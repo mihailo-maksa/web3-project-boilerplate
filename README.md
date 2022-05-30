@@ -4,8 +4,13 @@ A simple & easy to use boilerplate to quickly bootstrap web3 projects.
 
 ### **Key Features:**
 
-- Bootstrapped
-  Includes basic React app setup with typescript, wallet connectors, as well as commonly used test contracts (tokens, NFTs, price oracles & more)
+- Bootstrapped with create-react-app
+- Supports typescript out of the box
+- Includes wallet connectors for most popular web3 wallets
+- Includes mock contracts for tokens, NFTs, oracles, etc.
+- Includes a lot of helpful utility functions to help you build projects faster
+- Responsive design with mobile first approach
+- Uses bootstrap together with SCSS
 
 ### **Setup:**
 
@@ -19,4 +24,6 @@ Run the following command:
 npm install && npm start
 ```
 
-A local development server will be started on port 3000. Enjoy building your next web3 venture!
+A local development server will be started on port 3000.
+
+Enjoy building your next web3 venture!
