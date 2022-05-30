@@ -1,6 +1,10 @@
 {
-  "name": "moonfarm",
-  "version": "0.1.0",
+  "name": "web3-starter-pack",
+  "version": "1.0.0",
+  "homepage": ".",
+  "description": "A simple & easy to use boilerplate to quickly bootstrap web3 projects.",
+  "author": "Mihailo Maksa",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "@gelatonetwork/limit-orders-lib": "^4.3.0-alpha.1",
