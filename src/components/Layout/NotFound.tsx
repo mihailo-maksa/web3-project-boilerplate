@@ -26,7 +26,7 @@ const NotFound: React.FC = (): JSX.Element => {
           </p>
 
           <button
-            className="btn regular-btn bold border-rad-05 back-to-vaults-btn"
+            className="btn regular-btn bold border-rad-05 back-to-home-btn"
             type="button"
             style={{
               marginLeft: '10px',

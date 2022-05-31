@@ -204,10 +204,15 @@ export const SwitchToRinkebyAlert: React.FC<AlertProps> = ({
     alertCondition && (
       <div
         className={`${
-          isDarkMode ? 'c-ratio-alert-dark-mode' : 'c-ratio-alert'
+          isDarkMode ? 'switch-chain-alert-dark-mode' : 'switch-chain-alert'
         }`}
       >
-        <strong>⚠️ Please switch to the Rinkeby testnet</strong>
+        <strong>
+          ⚠️ Wrong network: Please switch to the{' '}
+          <span onClick={switchToRinkeby} className="link switch-network-link">
+            Rinkeby test network
+          </span>
+        </strong>
         <span className="dismiss-alert" onClick={alertConditionHandler}>
           X
         </span>

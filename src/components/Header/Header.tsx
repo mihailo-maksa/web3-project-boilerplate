@@ -110,8 +110,8 @@ const Header: React.FC = (): JSX.Element => {
                     isDarkMode ? 'nav-link-dark-mode' : ''
                   }`}
                 >
-                  <i className="fas fa-tractor" />{' '}
-                  <span className="nav-link-name ml-1">Farms</span>
+                  <i className="fas fa-home" />{' '}
+                  <span className="nav-link-name ml-1">Home</span>
                 </Link>
                 <Link
                   to="/faucet"
@@ -261,7 +261,7 @@ const Header: React.FC = (): JSX.Element => {
                   isDarkMode ? 'app-title-dark-mode' : 'app-title'
                 } bold`}
               >
-                MoonFarm
+                Web3 Starter Pack
               </h1>
             </Link>
           </div>
@@ -279,7 +279,7 @@ const Header: React.FC = (): JSX.Element => {
                   isDarkMode ? 'app-title-dark-mode' : 'app-title'
                 } bold`}
               >
-                MoonFarm
+                Web3 Starter Pack
               </h1>
             </Link>
           </div>
@@ -292,8 +292,8 @@ const Header: React.FC = (): JSX.Element => {
                 to="/"
                 className={`nav-link ${isDarkMode ? 'nav-link-dark-mode' : ''}`}
               >
-                <i className="fas fa-tractor" />{' '}
-                <span className="nav-link-name ml-1">Farms</span>
+                <i className="fas fa-home" />{' '}
+                <span className="nav-link-name ml-1">Home</span>
               </Link>
               <Link
                 to="/faucet"

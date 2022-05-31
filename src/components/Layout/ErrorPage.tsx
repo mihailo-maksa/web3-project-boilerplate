@@ -38,7 +38,7 @@ const ErrorPage: React.FC = (): JSX.Element => {
           We are working hard to solve this problem ASAP!
         </p>
         <button
-          className="btn regular-btn bold border-rad-05 back-to-vaults-btn"
+          className="btn regular-btn bold border-rad-05 back-to-home-btn"
           type="button"
         >
           <Link

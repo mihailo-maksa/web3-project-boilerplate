@@ -1,7 +1,8 @@
 import React, { Suspense } from 'react'
 import './App.css'
 import Header from './components/Header'
-import Vaults from './components/Vaults'
+// @ts-ignore
+import Home from './components/Home'
 import Faucet from './components/Faucet'
 import { Route, Routes } from 'react-router-dom'
 import { ConnectProvider } from './state/ConnectContext'
@@ -42,7 +43,7 @@ const App: React.FC = () => {
               <Toastify />
               <Header />
               <Routes>
-                <Route path="/" element={<Vaults />} />
+                <Route path="/" element={<Home />} />
                 <Route path="/faucet" element={<Faucet />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
