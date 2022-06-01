@@ -210,7 +210,7 @@ export const SwitchToRinkebyAlert: React.FC<AlertProps> = ({
       >
         <strong>
           ⚠️ Wrong network: Please switch to the{' '}
-          <span onClick={switchToRinkeby} className="link switch-network-link">
+          <span onClick={switchToRinkeby} className="link switch-network-link pointer">
             Rinkeby test network
           </span>
         </strong>
