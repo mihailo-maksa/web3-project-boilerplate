@@ -2,6 +2,7 @@ $primary-color: #007bff;
 $dark-mode-primary: #191b1f;
 $dark-mode-secondary: #212429;
 $breakpoint: 992px;
+$breakpoint2: 576px;
 
 .app-header {
   display: flex;
@@ -107,6 +108,19 @@ $breakpoint: 992px;
 
 .app-title-dark-mode {
   color: #fff !important;
+}
+
+.app-title,
+.app-title-dark-mode {
+  @media screen and (max-width: $breakpoint) {
+    font-size: 1.8em;
+    font-weight: bold;
+    // margin-left: 1rem;
+  }
+
+  @media screen and (max-width: $breakpoint2) {
+    font-size: 1.5em;
+  }
 }
 
 .mode-switcher {
