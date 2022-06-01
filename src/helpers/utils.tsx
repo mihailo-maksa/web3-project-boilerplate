@@ -90,7 +90,7 @@ export const getEstimatedApy = async (
   LPsStaked: number,
   reserves: any,
   totalSupplyPool: number,
-  moonPrice: number,
+  rewardsTokenPrice: number,
   ethPrice: number,
   // @ts-ignore
 ): string => {
@@ -105,7 +105,8 @@ export const getEstimatedApy = async (
       (token0Price * reserves[0] + ethPrice * reserves[1]) / totalSupplyPool
 
     const apy: number =
-      ((rate * oneYear * moonPrice) / (valuePerLPToken * LPsStaked)) * 100
+      ((rate * oneYear * rewardsTokenPrice) / (valuePerLPToken * LPsStaked)) *
+      100
 
     if (Number.isNaN(apy)) {
       return '0.0'

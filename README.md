@@ -8,7 +8,7 @@ A simple & easy to use boilerplate to quickly bootstrap web3 projects.
 - Supports typescript out of the box
 - Includes wallet connectors for most popular web3 wallets
 - Includes mock contracts for tokens, NFTs, oracles, etc.
-- Includes a lot of helpful utility functions to help you build projects faster
+- Includes dozens of helpful utility functions to help you build projects faster
 - Responsive design with mobile first approach
 - Uses bootstrap together with SCSS
 

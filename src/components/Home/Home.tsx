@@ -62,10 +62,80 @@ const Home: React.FC = (): JSX.Element => {
           href="https://github.com/mihailo-maksa/web3-starter-pack"
           className="link github-link"
         >
-          Github repo{' '}
+          Github repo.{' '}
         </a>
       </p>
 
+      <p className="features-subtitle bold text-center mb-3 p-2">
+        Key Features:
+      </p>
+
+      <ul className="feature-list">
+        <li className="feature">
+          <strong>1.)</strong> Bootstrapped with{' '}
+          <strong>create-react-app</strong>
+        </li>
+        <li className="feature">
+          <strong>2.) Supports typescript</strong> out of the box
+        </li>
+        <li className="feature">
+          <strong>3.) Includes wallet connectors</strong> for most popular web3
+          wallets
+        </li>
+        <li className="feature">
+          <strong>4.) Includes mock contracts</strong> for tokens, NFTs,
+          oracles, etc.
+        </li>
+        <li className="feature">
+          <strong>5.)</strong> Includes{' '}
+          <strong>dozens of helpful utility functions</strong> to help you build
+          projects faster
+        </li>
+        <li className="feature">
+          <strong>6.) Responsive design</strong> with mobile first approach
+        </li>
+        <li className="feature">
+          <strong>7.)</strong> Uses <strong>bootstrap</strong> together with{' '}
+          <strong>SCSS</strong>
+        </li>
+      </ul>
+
+      <p className="features-subtitle bold text-center mt-5 mb-3 p-2">Setup:</p>
+
+      <ul className="feature-list">
+        <li className="feature">
+          <strong>1.)</strong> Fork the code from{' '}
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/mihailo-maksa/web3-starter-pack"
+            className="link github-link bold"
+          >
+            this Github repo.
+          </a>{' '}
+        </li>
+        <li className="feature">
+          <strong>2.) Create a .env file</strong> and add the{' '}
+          <strong>REACT_APP_INFURA_API_KEY</strong>
+        </li>
+        <li className="feature">
+          <strong>3.)</strong> Add any{' '}
+          <strong>other environment variables</strong> you want to set
+        </li>
+        <li className="feature">
+          <strong>4.)</strong> Run the following command:{' '}
+          <code className="bold">shell npm install && npm start</code>
+        </li>
+        <li className="feature">
+          <strong>5.)</strong> A local development server will be started on{' '}
+          <strong>port 3000</strong>
+        </li>
+        <li className="feature">
+          <strong>6.) Enjoy building your next web3 venture!</strong>
+        </li>
+      </ul>
+
+      <Filler />
       <Filler />
       <Filler />
       <Filler />

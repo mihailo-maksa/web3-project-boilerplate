@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { ConnectContext } from '../../state/ConnectContext'
 import { ThemeContext } from '../../state/ThemeContext'
 import { getContract } from '../../helpers/contract'
@@ -7,6 +7,8 @@ import {
   notifyUser,
   errorNotification,
   Filler,
+  RINKEBY_CHAIN_ID,
+  SwitchToRinkebyAlert,
 } from '../../helpers/utils'
 import contracts from '../../contracts/contracts.json'
 import ERC20 from '../../contracts/ERC20.json'
@@ -18,6 +20,26 @@ import metamaskIcon from '../../assets/metamask.svg'
 const Faucet: React.FC = (): JSX.Element => {
   const { isDarkMode } = useContext(ThemeContext)
   const { library, account } = useContext(ConnectContext)
+
+  const [networkWarning, setNetworkWarning] = useState<boolean>(true)
+  const [currentChainId, setCurrentChainId] = useState<number>(0)
+
+  useEffect(() => {
+    const main = async () => {
+      try {
+        // @ts-ignore
+        const { chainId: chain_id } = await new ethers.providers.Web3Provider(
+          window.ethereum,
+        ).getNetwork()
+
+        setCurrentChainId(chain_id)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+    main()
+  }, [])
 
   const mintWeth = async () => {
     try {
@@ -99,7 +121,7 @@ const Faucet: React.FC = (): JSX.Element => {
         ERC20.abi,
       )
 
-      const tx = await wbtc.mint(account, ethers.utils.parseEther('0.1'))
+      const tx = await wbtc.mint(account, ethers.utils.parseEther('0.01'))
 
       notifyUser(tx)
     } catch (error) {
@@ -119,7 +141,7 @@ const Faucet: React.FC = (): JSX.Element => {
         'WETH',
         18,
         contracts.contracts.WETH.address,
-        'https://raw.githubusercontent.com/mihailo-maksa/moonfarm/master/src/assets/weth.png',
+        'https://raw.githubusercontent.com/mihailo-maksa/web3-starter-pack/master/src/assets/weth.png',
       )
     } catch (error) {
       console.error(error)
@@ -132,7 +154,7 @@ const Faucet: React.FC = (): JSX.Element => {
         'DAI',
         18,
         contracts.contracts.DAI.address,
-        'https://raw.githubusercontent.com/mihailo-maksa/moonfarm/master/src/assets/dai.png',
+        'https://raw.githubusercontent.com/mihailo-maksa/web3-starter-pack/master/src/assets/dai.png',
       )
     } catch (error) {
       console.error(error)
@@ -145,7 +167,7 @@ const Faucet: React.FC = (): JSX.Element => {
         'USDC',
         6,
         contracts.contracts.USDC.address,
-        'https://raw.githubusercontent.com/mihailo-maksa/moonfarm/master/src/assets/usdc.png',
+        'https://raw.githubusercontent.com/mihailo-maksa/web3-starter-pack/master/src/assets/usdc.png',
       )
     } catch (error) {
       console.error(error)
@@ -158,20 +180,7 @@ const Faucet: React.FC = (): JSX.Element => {
         'WBTC',
         18,
         contracts.contracts.WBTC.address,
-        'https://raw.githubusercontent.com/mihailo-maksa/moonfarm/master/src/assets/wbtc.png',
-      )
-    } catch (error) {
-      console.error(error)
-    }
-  }
-
-  const addMoon = async () => {
-    try {
-      await addTokenToWallet(
-        'MOON',
-        18,
-        contracts.contracts.MOON.address,
-        'https://raw.githubusercontent.com/mihailo-maksa/moonfarm/master/src/assets/logo192.png',
+        'https://raw.githubusercontent.com/mihailo-maksa/web3-starter-pack/master/src/assets/wbtc.png',
       )
     } catch (error) {
       console.error(error)
@@ -181,8 +190,15 @@ const Faucet: React.FC = (): JSX.Element => {
   return (
     <div className={`${isDarkMode ? 'faucet-dark-mode faucet' : 'faucet'}`}>
       <Filler />
+      <SwitchToRinkebyAlert
+        currentChainId={currentChainId}
+        requiredChainId={RINKEBY_CHAIN_ID}
+        alertCondition={networkWarning}
+        alertConditionHandler={() => setNetworkWarning(false)}
+        isDarkMode={isDarkMode}
+      />
 
-      <h1 className="faucet-title bold">MoonFarm Faucet</h1>
+      <h1 className="faucet-title bold">Test Token Faucet</h1>
 
       <div className="faucet-header-buttons">
         <div className="faucet-button-group">
@@ -196,18 +212,6 @@ const Faucet: React.FC = (): JSX.Element => {
               Get Rinkeby ETH
             </a>
           </button>
-          <button
-            className="btn btn-primary bold"
-            type="button"
-            onClick={addMoon}
-          >
-            <img
-              src={metamaskIcon}
-              alt="MetaMask Icon"
-              className="metamask-icon-btn"
-            />{' '}
-            Add MOON to MetaMask
-          </button>
         </div>
       </div>
 
@@ -216,16 +220,6 @@ const Faucet: React.FC = (): JSX.Element => {
 
       <div className="faucet-content">
         <div className="faucet-button-group">
-          <button className="btn btn-secondary btn-link" type="button">
-            <a
-              href={`https://app.sushi.com/swap?inputCurrency=${contracts.contracts.WETH.address}&outputCurrency=${contracts.contracts.MOON.address}&chainId=4`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bold"
-            >
-              Buy MOON with WETH
-            </a>
-          </button>
           <button
             className="btn btn-primary bold"
             type="button"
@@ -248,16 +242,6 @@ const Faucet: React.FC = (): JSX.Element => {
         </div>
 
         <div className="faucet-button-group">
-          <button className="btn btn-secondary btn-link" type="button">
-            <a
-              href={`https://app.sushi.com/swap?inputCurrency=${contracts.contracts.DAI.address}&outputCurrency=${contracts.contracts.MOON.address}&chainId=4`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bold"
-            >
-              Buy MOON with DAI
-            </a>
-          </button>
           <button
             className="btn btn-primary bold"
             type="button"
@@ -280,16 +264,6 @@ const Faucet: React.FC = (): JSX.Element => {
         </div>
 
         <div className="faucet-button-group">
-          <button className="btn btn-secondary btn-link" type="button">
-            <a
-              href={`https://app.sushi.com/swap?inputCurrency=${contracts.contracts.USDC.address}&outputCurrency=${contracts.contracts.MOON.address}&chainId=4`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bold"
-            >
-              Buy MOON with USDC
-            </a>
-          </button>
           <button
             className="btn btn-primary bold"
             type="button"
@@ -312,22 +286,12 @@ const Faucet: React.FC = (): JSX.Element => {
         </div>
 
         <div className="faucet-button-group">
-          <button className="btn btn-secondary btn-link" type="button">
-            <a
-              href={`https://app.sushi.com/swap?inputCurrency=${contracts.contracts.WBTC.address}&outputCurrency=${contracts.contracts.MOON.address}&chainId=4`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bold"
-            >
-              Buy Moon with WBTC
-            </a>
-          </button>
           <button
             className="btn btn-primary bold"
             type="button"
             onClick={mintWbtc}
           >
-            Mint 0.1 WBTC
+            Mint 0.01 WBTC
           </button>
           <button
             className="btn btn-primary bold"

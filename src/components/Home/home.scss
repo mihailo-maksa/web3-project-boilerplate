@@ -13,3 +13,27 @@ $breakpoint2: 576px;
   color: #06f;
   cursor: pointer;
 }
+
+.features-subtitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.feature-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  margin: 0 auto;
+  text-align: left;
+  line-height: 1.7;
+
+  @media (max-width: $breakpoint) {
+    width: 70%;
+  }
+
+  @media (max-width: $breakpoint2) {
+    width: 95%;
+  }
+}
