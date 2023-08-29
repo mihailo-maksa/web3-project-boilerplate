@@ -2,44 +2,44 @@ import React, { useContext, useEffect, useState } from 'react'
 // import { getContract } from '../../helpers/contract'
 // import contracts from '../../contracts/contracts.json'
 import {
-  SwitchToRinkebyAlert,
+  SwitchToGoerliAlert,
   Filler,
-  RINKEBY_CHAIN_ID,
-} from '../../helpers/utils'
+  GOERLI_CHAIN_ID,
+} from "../../helpers/utils";
 // import { ConnectContext } from '../../state/ConnectContext'
-import { ThemeContext } from '../../state/ThemeContext'
-import './home.scss'
-import { ethers } from 'ethers'
+import { ThemeContext } from "../../state/ThemeContext";
+import "./home.scss";
+import { ethers } from "ethers";
 
 const Home: React.FC = (): JSX.Element => {
-  const { isDarkMode } = useContext(ThemeContext)
+  const { isDarkMode } = useContext(ThemeContext);
   // const { library, account } = useContext(ConnectContext)
-  const [networkWarning, setNetworkWarning] = useState<boolean>(true)
-  const [currentChainId, setCurrentChainId] = useState<number>(0)
+  const [networkWarning, setNetworkWarning] = useState<boolean>(true);
+  const [currentChainId, setCurrentChainId] = useState<number>(0);
 
   useEffect(() => {
     const main = async () => {
       try {
         // @ts-ignore
         const { chainId: chain_id } = await new ethers.providers.Web3Provider(
-          window.ethereum,
-        ).getNetwork()
+          window.ethereum
+        ).getNetwork();
 
-        setCurrentChainId(chain_id)
+        setCurrentChainId(chain_id);
       } catch (error) {
-        console.error(error)
+        console.error(error);
       }
-    }
+    };
 
-    main()
-  }, [])
+    main();
+  }, []);
 
   return (
-    <div className={`${isDarkMode ? 'home home-dark-mode' : 'home'}`}>
+    <div className={`${isDarkMode ? "home home-dark-mode" : "home"}`}>
       <Filler />
-      <SwitchToRinkebyAlert
+      <SwitchToGoerliAlert
         currentChainId={currentChainId}
-        requiredChainId={RINKEBY_CHAIN_ID}
+        requiredChainId={GOERLI_CHAIN_ID}
         alertCondition={networkWarning}
         alertConditionHandler={() => setNetworkWarning(false)}
         isDarkMode={isDarkMode}
@@ -55,14 +55,14 @@ const Home: React.FC = (): JSX.Element => {
 
       <p className="home-subtitle bold text-center mb-5 p-2">
         To learn more about the project and how to use it, please visit the
-        official{' '}
+        official{" "}
         <a
           target="_blank"
           rel="noopener noreferrer"
           href="https://github.com/mihailo-maksa/web3-starter-pack"
           className="link github-link"
         >
-          Github repo.{' '}
+          Github repo.{" "}
         </a>
       </p>
 
@@ -72,7 +72,7 @@ const Home: React.FC = (): JSX.Element => {
 
       <ul className="feature-list">
         <li className="feature">
-          <strong>1.)</strong> Bootstrapped with{' '}
+          <strong>1.)</strong> Bootstrapped with{" "}
           <strong>create-react-app</strong>
         </li>
         <li className="feature">
@@ -87,7 +87,7 @@ const Home: React.FC = (): JSX.Element => {
           oracles, etc.
         </li>
         <li className="feature">
-          <strong>5.)</strong> Includes{' '}
+          <strong>5.)</strong> Includes{" "}
           <strong>dozens of helpful utility functions</strong> to help you build
           projects faster
         </li>
@@ -95,7 +95,7 @@ const Home: React.FC = (): JSX.Element => {
           <strong>6.) Responsive design</strong> with mobile first approach
         </li>
         <li className="feature">
-          <strong>7.)</strong> Uses <strong>bootstrap</strong> together with{' '}
+          <strong>7.)</strong> Uses <strong>bootstrap</strong> together with{" "}
           <strong>SCSS</strong>
         </li>
       </ul>
@@ -104,7 +104,7 @@ const Home: React.FC = (): JSX.Element => {
 
       <ul className="feature-list">
         <li className="feature">
-          <strong>1.)</strong> Fork the code from{' '}
+          <strong>1.)</strong> Fork the code from{" "}
           <a
             target="_blank"
             rel="noopener noreferrer"
@@ -112,22 +112,22 @@ const Home: React.FC = (): JSX.Element => {
             className="link github-link bold"
           >
             this Github repo.
-          </a>{' '}
+          </a>{" "}
         </li>
         <li className="feature">
-          <strong>2.) Create a .env file</strong> and add the{' '}
+          <strong>2.) Create a .env file</strong> and add the{" "}
           <strong>REACT_APP_INFURA_API_KEY</strong>
         </li>
         <li className="feature">
-          <strong>3.)</strong> Add any{' '}
+          <strong>3.)</strong> Add any{" "}
           <strong>other environment variables</strong> you want to set
         </li>
         <li className="feature">
-          <strong>4.)</strong> Run the following command:{' '}
+          <strong>4.)</strong> Run the following command:{" "}
           <code className="bold">shell npm install && npm start</code>
         </li>
         <li className="feature">
-          <strong>5.)</strong> A local development server will be started on{' '}
+          <strong>5.)</strong> A local development server will be started on{" "}
           <strong>port 3000</strong>
         </li>
         <li className="feature">
@@ -140,7 +140,7 @@ const Home: React.FC = (): JSX.Element => {
       <Filler />
       <Filler />
     </div>
-  )
-}
+  );
+};
 
 export default Home

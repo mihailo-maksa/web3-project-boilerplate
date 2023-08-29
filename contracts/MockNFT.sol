@@ -1020,7 +1020,7 @@ contract MockNFT is ERC721PresetMinterPauserAutoId {
     uint _MAX_NFTS, // 1111
     string memory _name, // Mock NFT
     string memory _symbol, // MOCK
-    string memory _baseTokenURI // https://rinkeby-mock-nft-metadata.herokuapp.com/id?=
+    string memory _baseTokenURI // ""
   ) 
   ERC721PresetMinterPauserAutoId(_name, _symbol, _baseTokenURI) {
     MAX_NFTS = _MAX_NFTS;

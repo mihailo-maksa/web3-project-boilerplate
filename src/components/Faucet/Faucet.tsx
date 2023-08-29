@@ -7,9 +7,9 @@ import {
   notifyUser,
   errorNotification,
   Filler,
-  RINKEBY_CHAIN_ID,
-  SwitchToRinkebyAlert,
-} from '../../helpers/utils'
+  GOERLI_CHAIN_ID,
+  SwitchToGoerliAlert,
+} from "../../helpers/utils";
 import contracts from '../../contracts/contracts.json'
 import ERC20 from '../../contracts/ERC20.json'
 import WETH from '../../contracts/WETH.json'
@@ -188,11 +188,11 @@ const Faucet: React.FC = (): JSX.Element => {
   }
 
   return (
-    <div className={`${isDarkMode ? 'faucet-dark-mode faucet' : 'faucet'}`}>
+    <div className={`${isDarkMode ? "faucet-dark-mode faucet" : "faucet"}`}>
       <Filler />
-      <SwitchToRinkebyAlert
+      <SwitchToGoerliAlert
         currentChainId={currentChainId}
-        requiredChainId={RINKEBY_CHAIN_ID}
+        requiredChainId={GOERLI_CHAIN_ID}
         alertCondition={networkWarning}
         alertConditionHandler={() => setNetworkWarning(false)}
         isDarkMode={isDarkMode}
@@ -204,12 +204,12 @@ const Faucet: React.FC = (): JSX.Element => {
         <div className="faucet-button-group">
           <button className="btn btn-secondary btn-link" type="button">
             <a
-              href="https://faucet.rinkeby.io/"
+              href="https://goerlifaucet.com"
               target="_blank"
               rel="noopener noreferrer"
               className="bold"
             >
-              Get Rinkeby ETH
+              Get Goerli ETH
             </a>
           </button>
         </div>
@@ -236,7 +236,7 @@ const Faucet: React.FC = (): JSX.Element => {
               src={metamaskIcon}
               alt="MetaMask Icon"
               className="metamask-icon-btn"
-            />{' '}
+            />{" "}
             Add WETH to MetaMask
           </button>
         </div>
@@ -258,7 +258,7 @@ const Faucet: React.FC = (): JSX.Element => {
               src={metamaskIcon}
               alt="MetaMask Icon"
               className="metamask-icon-btn"
-            />{' '}
+            />{" "}
             Add DAI to MetaMask
           </button>
         </div>
@@ -280,7 +280,7 @@ const Faucet: React.FC = (): JSX.Element => {
               src={metamaskIcon}
               alt="MetaMask Icon"
               className="metamask-icon-btn"
-            />{' '}
+            />{" "}
             Add USDC to MetaMask
           </button>
         </div>
@@ -302,13 +302,13 @@ const Faucet: React.FC = (): JSX.Element => {
               src={metamaskIcon}
               alt="MetaMask Icon"
               className="metamask-icon-btn"
-            />{' '}
+            />{" "}
             Add WBTC to MetaMask
           </button>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default Faucet

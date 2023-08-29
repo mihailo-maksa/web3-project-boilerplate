@@ -1,6 +1,6 @@
 {
-  "chain": "rinkeby",
-  "chainId": "4",
+  "chain": "goerli",
+  "chainId": "5",
   "contracts": {
     "WETH": {
       "address": "0x23A7b6630E9673FD6675B3c359C2581b4D0F9E9d"

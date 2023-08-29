@@ -5,47 +5,47 @@ import './toast.css'
 import NumFormat from 'react-number-format'
 
 export const ZERO_ADDRESS: string = '0x0000000000000000000000000000000000000000'
-export const RPC_URL: string = `https://rinkeby.infura.io/v3/${process.env.REACT_APP_INFURA_API_KEY}`
-export const RINKEBY_CHAIN_ID: number = 4
-export const RINKEBY_CHAIN_ID_HEX: string = '0x4'
-export const oneYear: number = 60 * 60 * 24 * 365
+export const RPC_URL: string = `https://goerli.infura.io/v3/${process.env.REACT_APP_INFURA_API_KEY}`;
+export const GOERLI_CHAIN_ID: number = 5;
+export const GOERLI_CHAIN_ID_HEX: string = "0x5";
+export const oneYear: number = 60 * 60 * 24 * 365;
 
 export const infiniteApproveValue: BigNumber = BigNumber.from(
-  '1157920892373161954235709850086879078532699',
-)
+  "1157920892373161954235709850086879078532699"
+);
 
 export const copyToClipboard = (e: any, text: string): void => {
-  e.preventDefault()
-  const el = document.createElement('textarea')
-  el.value = text
-  document.body.appendChild(el)
-  el.select()
-  document.execCommand('copy')
-  document.body.removeChild(el)
-}
+  e.preventDefault();
+  const el = document.createElement("textarea");
+  el.value = text;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
+};
 
 export const makeShortAddress = (address: string): string => {
   return `${address.substr(0, 6).toString()}...${address.substr(
     address.length - 4,
-    address.length,
-  )}`
-}
+    address.length
+  )}`;
+};
 
 export const reloadPage = (): void => {
-  window.location.reload()
-}
+  window.location.reload();
+};
 
 export const addTokenToWallet = async (
   symbol: string,
   decimals: number = 18,
   address: string,
-  image: string,
+  image: string
 ) => {
   try {
     await window.ethereum.request({
-      method: 'wallet_watchAsset',
+      method: "wallet_watchAsset",
       params: {
-        type: 'ERC20',
+        type: "ERC20",
         options: {
           address,
           symbol,
@@ -53,37 +53,37 @@ export const addTokenToWallet = async (
           image,
         },
       },
-    })
+    });
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
 
-export const switchToRinkeby = async () => {
+export const switchToGoerli = async () => {
   try {
     await window.ethereum.request({
-      method: 'wallet_switchEthereumChain',
-      params: [{ chainId: RINKEBY_CHAIN_ID_HEX }],
-    })
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: GOERLI_CHAIN_ID_HEX }],
+    });
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
 
 export const toUsd = (amount: string, price: string): number =>
-  parseFloat(amount) * parseFloat(price)
+  parseFloat(amount) * parseFloat(price);
 
 export const getPriceInUsdFromPair = (
   reserves0: string,
   reservesETH: string,
-  ethPrice: number,
+  ethPrice: number
 ): number => {
-  const one = ethers.utils.parseEther('1')
+  const one = ethers.utils.parseEther("1");
   const amount: number = parseFloat(
-    ethers.utils.formatEther(one.mul(reserves0).div(reservesETH)),
-  )
-  return ethPrice / amount
-}
+    ethers.utils.formatEther(one.mul(reserves0).div(reservesETH))
+  );
+  return ethPrice / amount;
+};
 
 export const getEstimatedApy = async (
   rate: number,
@@ -91,37 +91,37 @@ export const getEstimatedApy = async (
   reserves: any,
   totalSupplyPool: number,
   rewardsTokenPrice: number,
-  ethPrice: number,
+  ethPrice: number
   // @ts-ignore
 ): string => {
   try {
     const token0Price: number = await getPriceInUsdFromPair(
       reserves[0],
       reserves[1],
-      ethPrice,
-    )
+      ethPrice
+    );
 
     const valuePerLPToken: number =
-      (token0Price * reserves[0] + ethPrice * reserves[1]) / totalSupplyPool
+      (token0Price * reserves[0] + ethPrice * reserves[1]) / totalSupplyPool;
 
     const apy: number =
       ((rate * oneYear * rewardsTokenPrice) / (valuePerLPToken * LPsStaked)) *
-      100
+      100;
 
     if (Number.isNaN(apy)) {
-      return '0.0'
+      return "0.0";
     }
 
-    return apy.toString()
+    return apy.toString();
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
 
 export const tsToDateString = (ts: number): string => {
-  const dt = new Date(ts * 1000)
-  return dt.toLocaleDateString()
-}
+  const dt = new Date(ts * 1000);
+  return dt.toLocaleDateString();
+};
 
 export const sendNotification = (
   title: string,
@@ -129,7 +129,7 @@ export const sendNotification = (
   duration: number = 3000,
   fn: () => void = () => {},
   delay: number = 0,
-  className: string = '',
+  className: string = ""
 ) => {
   const toastConstant: React.FC = (): JSX.Element => {
     return (
@@ -137,8 +137,8 @@ export const sendNotification = (
         <h3 className="bold">{title}</h3>
         <p>{body}</p>
       </div>
-    )
-  }
+    );
+  };
 
   toast(toastConstant, {
     position: toast.POSITION.TOP_RIGHT,
@@ -147,28 +147,28 @@ export const sendNotification = (
     delay,
     className,
     onClose: () => {
-      fn()
+      fn();
     },
-  })
-}
+  });
+};
 
 export const errorNotification = (body: string) => {
-  const title = '❌ Error!'
-  sendNotification(title, body, 3000, () => {}, 0, 'error')
-}
+  const title = "❌ Error!";
+  sendNotification(title, body, 3000, () => {}, 0, "error");
+};
 
 export const notifyUser = async (tx: any, fn: () => void = () => {}) => {
   try {
-    let notificationTitle = '⏰ Transaction Sent!'
-    let notificationBody = 'Please wait for the transaction confirmation.'
-    sendNotification(notificationTitle, notificationBody, 0, fn)
+    let notificationTitle = "⏰ Transaction Sent!";
+    let notificationBody = "Please wait for the transaction confirmation.";
+    sendNotification(notificationTitle, notificationBody, 0, fn);
 
-    await tx.wait(1)
+    await tx.wait(1);
 
-    toast.dismiss()
+    toast.dismiss();
 
-    notificationTitle = '✔️ Transaction Confirmed!'
-    notificationBody = 'Transaction was successful.'
+    notificationTitle = "✔️ Transaction Confirmed!";
+    notificationBody = "Transaction was successful.";
 
     sendNotification(
       notificationTitle,
@@ -176,24 +176,24 @@ export const notifyUser = async (tx: any, fn: () => void = () => {}) => {
       3000,
       fn,
       1000,
-      'success',
-    )
+      "success"
+    );
 
-    fn()
+    fn();
   } catch (error) {
-    console.error(error)
+    console.error(error);
   }
-}
+};
 
 interface AlertProps {
-  currentChainId: number
-  requiredChainId: number
-  alertCondition: boolean
-  alertConditionHandler: () => void
-  isDarkMode: boolean
+  currentChainId: number;
+  requiredChainId: number;
+  alertCondition: boolean;
+  alertConditionHandler: () => void;
+  isDarkMode: boolean;
 }
 
-export const SwitchToRinkebyAlert: React.FC<AlertProps> = ({
+export const SwitchToGoerliAlert: React.FC<AlertProps> = ({
   currentChainId,
   requiredChainId,
   alertCondition,
@@ -205,19 +205,19 @@ export const SwitchToRinkebyAlert: React.FC<AlertProps> = ({
     alertCondition && (
       <div
         className={`${
-          isDarkMode ? 'switch-chain-alert-dark-mode' : 'switch-chain-alert'
+          isDarkMode ? "switch-chain-alert-dark-mode" : "switch-chain-alert"
         }`}
       >
         <strong>
-          ⚠️ Wrong network: Please switch to the{' '}
+          ⚠️ Wrong network: Please switch to the{" "}
           <span
-            onClick={switchToRinkeby}
+            onClick={switchToGoerli}
             className="link switch-network-link pointer"
             style={{
-              color: '#007bff',
+              color: "#007bff",
             }}
           >
-            Rinkeby test network
+            Goerli test network
           </span>
         </strong>
         <span className="dismiss-alert" onClick={alertConditionHandler}>
@@ -225,8 +225,8 @@ export const SwitchToRinkebyAlert: React.FC<AlertProps> = ({
         </span>
       </div>
     )
-  )
-}
+  );
+};
 
 export const Filler: React.FC = (): JSX.Element => {
   return (

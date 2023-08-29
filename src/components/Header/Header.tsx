@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from 'react'
 import {
   makeShortAddress,
   copyToClipboard,
-  RINKEBY_CHAIN_ID,
-  switchToRinkeby,
-} from '../../helpers/utils'
+  GOERLI_CHAIN_ID,
+  switchToGoerli,
+} from "../../helpers/utils";
 import { ConnectContext } from '../../state/ConnectContext'
 import { ThemeContext } from '../../state/ThemeContext'
 import './header.scss'
@@ -36,8 +36,8 @@ const Header: React.FC = (): JSX.Element => {
     setSaveAccountTracker(false)
   }
 
-  if (chainId !== RINKEBY_CHAIN_ID) {
-    switchToRinkeby()
+  if (chainId !== GOERLI_CHAIN_ID) {
+    switchToGoerli();
   }
 
   useEffect(() => {
