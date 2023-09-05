@@ -60,8 +60,8 @@ const Faucet: React.FC = (): JSX.Element => {
         errorNotification('User rejected transaction signature')
       } else {
         errorNotification(
-          'Failed to mint WETH. Make sure your wallet balance is at least 0.1 ETH',
-        )
+          "Failed to wrap ETH to WETH. Make sure your wallet balance is at least 0.1 ETH"
+        );
       }
     }
   }
