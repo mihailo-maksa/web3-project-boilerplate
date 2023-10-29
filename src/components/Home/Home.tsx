@@ -124,7 +124,7 @@ const Home: React.FC = (): JSX.Element => {
         </li>
         <li className="feature">
           <strong>4.)</strong> Run the following command:{" "}
-          <code className="bold">shell npm install && npm start</code>
+          <code className="bold">npm install && npm start</code>
         </li>
         <li className="feature">
           <strong>5.)</strong> A local development server will be started on{" "}
